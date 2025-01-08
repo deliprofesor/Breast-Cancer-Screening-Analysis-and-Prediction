@@ -1,10 +1,10 @@
 # Breast-Cancer-Screening-Analysis-and-Prediction
 
-# Breast Cancer Screening Data Analysis and Modeling
+![kanser](https://github.com/user-attachments/assets/2c8329b9-f571-4af7-add3-28e9858cd1e0)
+
 
 This project involves an extensive analysis of a breast cancer screening dataset. The goal is to explore the data, clean it, visualize patterns, and build machine learning models to classify cancer types. The analysis includes preprocessing steps, feature importance analysis, and visualization to better understand the data. Additionally, advanced machine learning techniques like SMOTE and Random Forest with hyperparameter tuning are used.
 
----
 
 ## Features of the Project
 
