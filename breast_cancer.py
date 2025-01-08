@@ -208,9 +208,12 @@ plt.ylabel('Frekans')
 plt.show()
 
 # KMeans Kümeleme
-X = data[['x_age', 'rad_r1', 'libra_breastarea', 'libra_densearea']]
+data_clean = data.dropna(subset=['x_age', 'rad_r1', 'libra_breastarea', 'libra_densearea'])
+X_clean = data_clean[['x_age', 'rad_r1', 'libra_breastarea', 'libra_densearea']]
 kmeans = KMeans(n_clusters=3, random_state=42)
-data['cluster'] = kmeans.fit_predict(X)
+data_clean['cluster'] = kmeans.fit_predict(X_clean)
+data['cluster'] = None  # Initialize the 'cluster' column with NaN values
+data.loc[data_clean.index, 'cluster'] = kmeans.fit_predict(X_clean)
 
 # Kümeleme sonuçlarını görselleştirme
 plt.figure(figsize=(10, 6))
@@ -220,11 +223,16 @@ plt.xlabel('Libra Breast Area')
 plt.ylabel('Libra Dense Area')
 plt.show()
 
-# Streamlit görselleştirmeleri
-st.title('Meme Kanseri Tarama Analizi')
-st.write(data.describe())
-st.write('### Yaş Dağılımı')
-st.pyplot(sns.histplot(data['x_age'].dropna(), bins=20, kde=True, color='blue'))
+# Libra Percent Density ile Kanser Türü arasındaki ilişkiyi görselleştirme
+plt.figure(figsize=(10, 6))
+sns.boxplot(data=data, x='x_type', y='libra_percentdensity', palette='muted')
+plt.title('Kanser Türlerine Göre Libra Percent Density')
+plt.xlabel('Kanser Türü')
+plt.ylabel('Libra Percent Density')
+st.pyplot(plt)  # Streamlit ile görselleştirmeyi görüntüleme
 
 # Modeli kaydetme
 joblib.dump(model, 'breast_cancer_model.pkl')
+
+# Streamlit'te modelin kaydedildiğini gösterme
+st.write("Model kaydedildi: breast_cancer_model.pkl")
