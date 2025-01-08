@@ -75,8 +75,8 @@ This project involves an extensive analysis of a breast cancer screening dataset
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone <[repository-url](https://github.com/deliprofesor/Breast-Cancer-Screening-Analysis-and-Prediction)>
+   cd <Breast-Cancer-Screening-Analysis-and-Prediction>
    ```
 2. Install the dependencies:
    ```bash
